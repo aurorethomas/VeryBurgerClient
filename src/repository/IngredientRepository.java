@@ -25,10 +25,11 @@ public class IngredientRepository {
 			ResultSet res = stm.executeQuery(req);
 			while(res.next()){
 				int id = res.getInt("id_ingredient");
+				int id_type = res.getInt("id_type");
 				String name = res.getString("name");
-				String labelquantity = res.getString("labelquantity");
+				String labelquantity = res.getString("quantity_label");
 				// creating and inserting new Ingredient in arraylist
-				this.ingredients.add(new Ingredient(id, name, labelquantity));
+				this.ingredients.add(new Ingredient(id,id_type, name, labelquantity));
 			}
 			res.close();
 		}catch(SQLException e){
@@ -41,23 +42,19 @@ public class IngredientRepository {
 	public boolean createIngredient(Ingredient ing){
 		Connection conn = this.database.getConn();
 		try{
-			String req = "SELECT * FROM INGREDIENT WHERE test = ?  and test= ?";
+			String req = "INSERT INTO INGREDIENT (id_type, name, quantity_label) VALUES(?,?,?)";
 			PreparedStatement stm = conn.prepareStatement(req);
-			// clearing ingredients list before inserting new list
-			stm.setInt(1, 3705);
-			stm.setString(2, "VO");
-			// clearing ingredients list before inserting new list
-			ingredients.clear();
-			while(res.next()){
-				int id = res.getInt("id_ingredient");
-				String name = res.getString("name");
-				String labelquantity = res.getString("labelquantity");
-				// creating and inserting new Ingredient in arraylist
-				this.ingredients.add(new Ingredient(id, name, labelquantity));
-			}
+			
+			stm.setInt(1, ing.getId_type());
+			stm.setString(2, ing.getName());
+			stm.setString(3, ing.getQuantity_label());
+			ResultSet res = stm.executeQuery();
 			res.close();
+			stm.close();
+			return true;
 		}catch(SQLException e){
 			// erreur
+			return false;
 		}
 
 	}
