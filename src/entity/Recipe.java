@@ -1,4 +1,4 @@
-package projetBidon;
+package entity;
 
 public class Recipe {
 
@@ -7,7 +7,6 @@ public class Recipe {
 	private double price;
 	
 	public Recipe(int id_recipe, String name_recipe, double price) {
-		super();
 		this.id_recipe = id_recipe;
 		this.name_recipe = name_recipe;
 		this.price = price;

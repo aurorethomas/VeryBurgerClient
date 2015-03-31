@@ -1,8 +1,8 @@
-package projetBidon;
+package entity;
 import java.util.Date;
 
 public class Order {
-
+	
 	private int id_order;
 	private int id_user;
 	private Date order_date;

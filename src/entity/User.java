@@ -1,4 +1,4 @@
-package projetBidon;
+package entity;
 
 public class User {
 
@@ -10,7 +10,6 @@ public class User {
 	
 	public User(int id_user, String firstName_user, String surName_user,
 			int position) {
-		super();
 		this.id_user = id_user;
 		this.firstName_user = firstName_user;
 		this.surName_user = surName_user;

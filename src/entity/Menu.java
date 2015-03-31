@@ -1,4 +1,4 @@
-package projetBidon;
+package entity;
 
 public class Menu {
 

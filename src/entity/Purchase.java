@@ -1,4 +1,4 @@
-package projetBidon;
+package entity;
 import java.util.Date;
 
 public class Purchase {
@@ -16,7 +16,6 @@ public class Purchase {
 	public Purchase(int id_purchase, Date purchaseDate, Date throwDate,
 			int throw_user_id, int purchasePrice, char availabe,
 			int id_ingredient, int quantite_ingredient, Date expireDate) {
-		super();
 		this.id_purchase = id_purchase;
 		this.purchaseDate = purchaseDate;
 		this.throwDate = throwDate;

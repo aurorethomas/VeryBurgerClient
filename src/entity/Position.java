@@ -1,4 +1,4 @@
-package projetBidon;
+package entity;
 
 public class Position {
 
@@ -6,7 +6,6 @@ public class Position {
 	private String label_position;
 	
 	public Position(int id_menu_order, String label_position) {
-		super();
 		this.id_menu_order = id_menu_order;
 		this.label_position = label_position;
 	}
