@@ -4,14 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Util {
-	public java.sql.Date StringToDate(String text){
+	
+	/*public Date StringToDate(String text) throws ParseException{
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-		try{
-			Date parsed = format.parse("20110210");
-			java.sql.Date sql = new java.sql.Date(parsed.getTime());
-	        return sql;
-		}catch(ParseException e){
-			
-		}
-	}
+		Date parsed = format.parse("20110210");
+		java.sql.Date sql = new java.sql.Date(parsed.getTime());
+	    return sql;
+	}*/
 }

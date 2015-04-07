@@ -26,21 +26,21 @@ public class OrderRepository {
 		Connection conn = this.database.getConn();
 		try{
 			Statement stm = conn.createStatement();
-			String req = "SELECT * FROM ORDER";
+			String req = "SELECT * FROM ORDERS";
 			ResultSet res = stm.executeQuery(req);
 			while(res.next()){
 				int id = res.getInt("id_order");
 				int id_user = res.getInt("id_user");
-				Date order_date = res.getString("name");
-				Date delivrance_date = res.getString("quantity_label");
+				Date order_date = res.getDate("order_date");
+				Date delivrance_date = res.getDate("delivrance_date");
 				// creating and inserting new Ingredient in arraylist
-				this.ingredients.add(new Ingredient(id,id_type, name, labelquantity));
+				this.orders.add(new Order(id,id_user, order_date, delivrance_date));
 			}
 			res.close();
 		}catch(SQLException e){
 			// erreur
 		}
 		// returning arraylist of ingredients
-		return ingredients;
+		return orders;
 	}
 }
