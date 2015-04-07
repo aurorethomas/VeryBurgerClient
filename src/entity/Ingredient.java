@@ -1,45 +1,47 @@
 package entity;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Ingredient {
-	private int id_ingredient;
-	private int id_type;
-	private String name;
-	private String quantity_label;
+	private final IntegerProperty id_ingredient;
+	private final StringProperty name;
+	private final StringProperty quantity_label;
 	
-	
-	public Ingredient(int id_ingredient, int id_type, String name,
+	public Ingredient(int id_ingredient, String name,
 			String quantity_label) {
-		this.id_ingredient = id_ingredient;
-		this.id_type = id_type;
-		this.name = name;
-		this.quantity_label = quantity_label;
+		this.id_ingredient = new SimpleIntegerProperty(id_ingredient);
+        this.name = new SimpleStringProperty(name);
+        this.quantity_label = new SimpleStringProperty(quantity_label);
 	}
-	
-	public int getId_ingredient() {
+
+	public IntegerProperty getId_ingredient() {
 		return id_ingredient;
 	}
-	public void setId_ingredient(int id_ingredient) {
-		this.id_ingredient = id_ingredient;
+
+	public void setId_ingredient(Integer id_ingredient) {
+		this.id_ingredient.set(id_ingredient);
 	}
-	public int getId_type() {
-		return id_type;
-	}
-	public void setId_type(int id_type) {
-		this.id_type = id_type;
-	}
-	public String getName() {
+
+	public StringProperty getName() {
 		return name;
 	}
+
 	public void setName(String name) {
-		this.name = name;
+		this.name.set(name);
 	}
-	public String getQuantity_label() {
+
+	public StringProperty getQuantity_label() {
 		return quantity_label;
 	}
+
 	public void setQuantity_label(String quantity_label) {
-		this.quantity_label = quantity_label;
-	}
-	
+		this.quantity_label.set(quantity_label);
+	}	
 	
 	
 }
