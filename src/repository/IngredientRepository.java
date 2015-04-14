@@ -25,15 +25,15 @@ public class IngredientRepository {
 			ResultSet res = stm.executeQuery(req);
 			while(res.next()){
 				int id = res.getInt("id_ingredient");
-				int id_type = res.getInt("id_type");
 				String name = res.getString("name");
 				String labelquantity = res.getString("quantity_label");
 				// creating and inserting new Ingredient in arraylist
-				this.ingredients.add(new Ingredient(id,id_type, name, labelquantity));
+				this.ingredients.add(new Ingredient(id, name, labelquantity));
 			}
 			res.close();
 		}catch(SQLException e){
 			// erreur
+			System.out.println("Erreur getAllIngredients");
 		}
 		// returning arraylist of ingredients
 		return ingredients;
@@ -45,7 +45,6 @@ public class IngredientRepository {
 			String req = "INSERT INTO INGREDIENT (id_type, name, quantity_label) VALUES(?,?,?)";
 			PreparedStatement stm = conn.prepareStatement(req);
 			
-			stm.setInt(1, ing.getId_type());
 			stm.setString(2, ing.getName());
 			stm.setString(3, ing.getQuantity_label());
 			ResultSet res = stm.executeQuery();

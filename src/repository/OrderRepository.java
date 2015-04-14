@@ -33,14 +33,13 @@ public class OrderRepository {
 				int id_user = res.getInt("id_user");
 				Date order_date = res.getDate("order_date");
 				Date delivrance_date = res.getDate("delivrance_date");
-				// creating and inserting new Ingredient in arraylist
+				// creating and inserting new Orders in arraylist
 				this.orders.add(new Order(id,id_user, order_date, delivrance_date));
 			}
 			res.close();
 		}catch(SQLException e){
-			// erreur
+
 		}
-		// returning arraylist of ingredients
 		return orders;
 	}
 }
