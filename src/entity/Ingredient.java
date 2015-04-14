@@ -19,24 +19,24 @@ public class Ingredient {
         this.quantity_label = new SimpleStringProperty(quantity_label);
 	}
 
-	public IntegerProperty getId_ingredient() {
-		return id_ingredient;
+	public Integer getId_ingredient(){
+		return id_ingredient.get();
 	}
 
 	public void setId_ingredient(Integer id_ingredient) {
 		this.id_ingredient.set(id_ingredient);
 	}
 
-	public StringProperty getName() {
-		return name;
+	public String getName() {
+		return name.get();
 	}
 
 	public void setName(String name) {
 		this.name.set(name);
 	}
 
-	public StringProperty getQuantity_label() {
-		return quantity_label;
+	public String getQuantity_label() {
+		return quantity_label.get();
 	}
 
 	public void setQuantity_label(String quantity_label) {
