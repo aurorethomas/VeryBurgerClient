@@ -30,6 +30,10 @@ public class Order {
 	public int getId_order() {
 		return id_order.get();
 	}
+	
+	public IntegerProperty id_orderProperty(){
+		return id_order;
+	}
 
 	public void setId_order(int id_order) {
 		this.id_order.set(id_order);

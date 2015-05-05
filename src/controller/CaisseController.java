@@ -10,19 +10,24 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import application.MainApp;
+import entity.Menu;
 import entity.Order;
 import entity.Recipe;
 
 
-public class CommandesController {
+public class CaisseController {
     @FXML
-    public TableView<Order> ordersTable;
+    public TableView<Menu> menusTable;
     @FXML
-    public TableColumn<Order, Number> idOrder;
+    public TableColumn<Menu, String> menuName;
     @FXML
-    private TableColumn<Order, String> quantity;
+    private TableColumn<Menu, Number> menuPrix;
     @FXML
-    private Label namerecette;
+    private TableColumn<Menu, Number> menuQuantite;
+    @FXML
+    private TableColumn<Menu, Number> menuTotal;
+    @FXML
+    private Label prixTotal;
     @FXML
     private OrderRepository orderRepo;
     
@@ -34,7 +39,7 @@ public class CommandesController {
      * The constructor.
      * The constructor is called before the initialize() method.
      */
-    public CommandesController() {
+    public CaisseController() {
     }
 
     /**
@@ -44,26 +49,26 @@ public class CommandesController {
     @FXML
     private void initialize() {
         // Initialize the person table with the two columns.
-    	idOrder.setCellValueFactory(cellData -> cellData.getValue().id_orderProperty() );
+    	/*idOrder.setCellValueFactory(cellData -> cellData.getValue().id_orderProperty() );
         //lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
     	//nameRecette.setText("Cool");
-    	showRecipe(null);
+    	showRecipe(null);*/
     }
     
     private void showRecipe(Order o){
-    	if (o != null) {
+    	/*if (o != null) {
     		namerecette.setText("");
     	}else
     	{
     		namerecette.setText("");
-    	}
+    	}*/
     }
     
     @FXML
     private void handleRecipeOk() {
-        int selectedIndex = ordersTable.getSelectionModel().getSelectedIndex();
+       /* int selectedIndex = ordersTable.getSelectionModel().getSelectedIndex();
         orderRepo.recipeIsDone(ordersTable.getItems().get(selectedIndex));
-        ordersTable.getItems().remove(selectedIndex);
+        ordersTable.getItems().remove(selectedIndex);*/
     }
 
     /**
@@ -74,11 +79,11 @@ public class CommandesController {
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
         
-        // Add observable list data to the table
+       /* // Add observable list data to the table
         // personTable.setItems(mainApp.getPersonData());
         ObservableList<Order> orders = FXCollections.observableArrayList();
         orders.add(new Order(1, 1 , null, null));
         orders.add(new Order(2, 2 , null, null));
-        ordersTable.setItems(orders);
+        ordersTable.setItems(orders);*/
     }
 }

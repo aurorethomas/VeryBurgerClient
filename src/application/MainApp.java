@@ -1,5 +1,9 @@
 package application;
 
+import controller.CaisseController;
+import controller.CommandesController;
+import controller.RootLayoutController;
+
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -17,11 +21,12 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("VeryBurger");
 
         initRootLayout();
 
         //showPersonOverview();
+        //showCommandOverview();
     }
 
     /**
@@ -38,6 +43,11 @@ public class MainApp extends Application {
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
+            
+            // Give the controller access to the main app.
+            RootLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,6 +65,52 @@ public class MainApp extends Application {
 
             // Set person overview into the center of root layout.
             rootLayout.setCenter(personOverview);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void showCommandOverview() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("../view/MainVue.fxml"));
+            AnchorPane commandOverview = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(commandOverview);
+
+            // Give the controller access to the main app.
+             CommandesController controller = loader.getController();
+             controller.setMainApp(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public Boolean login(String username, String password){
+    	Database db = new Database();
+    	System.out.println(username);
+    	Boolean succes = db.login(username, password, "@oracle.iut-orsay.fr:1521:etudom");
+    	
+    	return succes;
+    }
+    
+    public void showCaisseOverview() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("../view/Caisse.fxml"));
+            AnchorPane commandOverview = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(commandOverview);
+
+            // Give the controller access to the main app.
+             CaisseController controller = loader.getController();
+             controller.setMainApp(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

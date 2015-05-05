@@ -10,7 +10,7 @@ import repository.OrderRepository;
 
 public class MainTest {
 	public static void main(String[] args) {
-		Database db = new Database("pleymar", "", "@oracle.iut-orsay.fr:1521:etudom");
+		/*Database db = new Database("pleymar", "", "@oracle.iut-orsay.fr:1521:etudom");
 		OrderRepository orderRepo = new OrderRepository(db);
 		IngredientRepository ingredientRepo = new IngredientRepository(db);
 		ArrayList<Order> orders = orderRepo.getAllOrders();
@@ -23,7 +23,7 @@ public class MainTest {
 		}
 		
 		View vue = new View();
-		vue.displayWindow();
+		vue.displayWindow();*/
     }
 	
 }

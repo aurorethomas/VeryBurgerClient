@@ -9,20 +9,23 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import application.Database;
 import entity.Ingredient;
 import entity.Order;
 
 public class OrderRepository {
-	private ArrayList<Order> orders;
+	//private ArrayList<Order> orders;
+	private ObservableList<Order> orders;
 	private Database database;
 	
 	public OrderRepository(Database database){
 		this.database = database;
-		orders = new ArrayList<Order>();
+		orders = FXCollections.observableArrayList();
 	}
 	
-	public ArrayList<Order> getAllOrders(){
+	public ObservableList<Order> getAllOrders(){
 		Connection conn = this.database.getConn();
 		try{
 			Statement stm = conn.createStatement();
@@ -41,5 +44,11 @@ public class OrderRepository {
 
 		}
 		return orders;
+	}
+	
+
+	public void recipeIsDone(Order order) {
+		// TODO Auto-generated method stub
+		
 	}
 }
