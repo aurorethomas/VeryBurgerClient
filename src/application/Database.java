@@ -16,7 +16,7 @@ public class Database {
 			this.conn = DriverManager.getConnection(url);
 			return true;
 		}catch(SQLException e){
-			System.out.println("error");
+			System.out.println("error WHILE CONNECTING");
 			return false;
 		}
 	}

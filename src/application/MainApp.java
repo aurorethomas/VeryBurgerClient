@@ -22,11 +22,10 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("VeryBurger");
-
+        
         initRootLayout();
-
         //showPersonOverview();
-        //showCommandOverview();
+        showCommandOverview();
     }
 
     /**
@@ -92,8 +91,8 @@ public class MainApp extends Application {
     public Boolean login(String username, String password){
     	Database db = new Database();
     	System.out.println(username);
-    	Boolean succes = db.login(username, password, "@oracle.iut-orsay.fr:1521:etudom");
-    	
+    	//Boolean succes = db.login(username, password, "@oracle.iut-orsay.fr:1521:etudom");
+    	Boolean succes = true;
     	return succes;
     }
     

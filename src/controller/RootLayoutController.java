@@ -52,7 +52,7 @@ public class RootLayoutController {
      */
     @FXML
     private void initialize() {
-    	loginBoxLaunch();
+    	//loginBoxLaunch();
     }
     
     @FXML
@@ -73,7 +73,7 @@ public class RootLayoutController {
     public Boolean login(String username, String password){
     	Database db = new Database();
     	Boolean succes = db.login(username, password, "@oracle.iut-orsay.fr:1521:etudom");
-
+    	
     	return succes;
     }
     
