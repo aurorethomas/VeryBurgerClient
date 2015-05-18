@@ -15,12 +15,17 @@ public class MenuRepository {
 	}
 	
 	public ObservableList<Menu> getAllMenus(){
-		String req = "select id_menu,name_menu, price_menu from MENU";
-		PreparedStatement stm;
+		ObservableList<Menu> menus = FXCollections.observableArrayList();
 		try {
-			stm = this.database.getConn().prepareStatement(req);
-			ResultSet monRes = stm.executeQuery();
-			ObservableList<Menu> menus = FXCollections.observableArrayList();
+			//PreparedStatement stm = this.database.getConn().prepareStatement(req);
+			//ResultSet monRes = stm.executeQuery();
+			Statement stm = this.database.getConn().createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY,
+					ResultSet.CLOSE_CURSORS_AT_COMMIT);
+			String req = "SELECT * FROM VUE_AFFICHAGE_LISTE_MENU";
+			ResultSet monRes =stm.executeQuery(req);
+			System.out.println(monRes.first());
 			while(monRes.next()){
 				int id_menu = monRes.getInt("id_menu");
 				String name = monRes.getString("name_menu");
@@ -32,9 +37,58 @@ public class MenuRepository {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			return menus;
 		}
 		
+	}
+	
+	public Integer commencerCommande(){
+		Connection conn = this.database.getConn();
+		CallableStatement cst;
+		try {
+			cst= conn.prepareCall(" ? = call Get_id_commande") ;
+			//cst.setInt(1, idOrder);
+			cst.registerOutParameter(1, java.sql.Types.INTEGER);
+			boolean succes = cst.execute();
+			int idCommande = cst.getInt(1);
+			return idCommande;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public void ajouterMenuCommande(Integer idCommande, Integer Idmenu, Integer quantity){
+		Connection conn = this.database.getConn();
+		CallableStatement cst;
+		try {
+			cst= conn.prepareCall("call Ajouter_menu_commande (?, ?, ?)") ;
+			cst.setInt(1, idCommande);
+			cst.setInt(2, Idmenu);
+			cst.setInt(3, quantity);
+			//cst.registerOutParameter(1, java.sql.Types.INTEGER);
+			boolean succes = cst.execute();
+			//int idCommande = cst.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void validerCommande(Integer idCommande){
+		Connection conn = this.database.getConn();
+		CallableStatement cst;
+		try {
+			cst= conn.prepareCall("call valider_commande (?)") ;
+			cst.setInt(1, idCommande);
+			//cst.registerOutParameter(1, java.sql.Types.INTEGER);
+			boolean succes = cst.execute();
+			//int idCommande = cst.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/*public boolean createMenu(Menu menu){

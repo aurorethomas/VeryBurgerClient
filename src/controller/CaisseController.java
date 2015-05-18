@@ -33,6 +33,8 @@ public class CaisseController {
     @FXML
     private OrderRepository orderRepo;
     
+    private Integer currentIDCommande;
+    
     private Double prixTotalDouble;
     
 
@@ -52,7 +54,6 @@ public class CaisseController {
      */
     @FXML
     private void initialize() {
-    	this.updatePrice(0.0);
         // Initialize the person table with the two columns.
     	menuName.setCellValueFactory(cellData -> cellData.getValue().getName_menu_property() );
     	menuPrix.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty() ); 
@@ -68,6 +69,7 @@ public class CaisseController {
     	this.updatePrice(this.prixTotalDouble + men.getPrice_menu());
     	men.setQuantity_menu(men.getQuantity_menu()+1);
     	menusTable.getSelectionModel().select(-1);
+    	this.mainApp.menuRepo.ajouterMenuCommande(this.currentIDCommande,men.getId_menu(), men.getQuantity_menu());
     }
     
     private void updatePrice(Double newPrice){
@@ -86,7 +88,8 @@ public class CaisseController {
     
     @FXML
     private void handleCommandePaye() {
-    	
+    	this.mainApp.menuRepo.validerCommande(this.currentIDCommande);
+    	resetCommande();
        /* int selectedIndex = ordersTable.getSelectionModel().getSelectedIndex();
         orderRepo.recipeIsDone(ordersTable.getItems().get(selectedIndex));
         ordersTable.getItems().remove(selectedIndex);*/
@@ -96,7 +99,20 @@ public class CaisseController {
     private void handleClickMenu(){
     	this.addToCommande(menusTable.getSelectionModel().getSelectedItem());
     }
-
+    
+    void resetCommande(){
+    	this.updatePrice(0.0);
+    	ObservableList<Menu> menus = FXCollections.observableArrayList();
+    	// offline
+    	menus.add(new Menu(1, "Repas très bon", 2));
+        menus.add(new Menu(1, "Repas pas bon", 2));
+        // online
+    	menus = this.mainApp.menuRepo.getAllMenus();
+    	menusTable.setItems(menus);	
+    	this.currentIDCommande = this.mainApp.menuRepo.commencerCommande();
+    }
+   
+ 
     /**
      * Is called by the main application to give a reference back to itself.
      * 
@@ -104,17 +120,6 @@ public class CaisseController {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-        
-       /* // Add observable list data to the table
-        // personTable.setItems(mainApp.getPersonData());
-        ObservableList<Order> orders = FXCollections.observableArrayList();
-        orders.add(new Order(1, 1 , null, null));
-        orders.add(new Order(2, 2 , null, null));
-        ordersTable.setItems(orders);*/
-        ObservableList<Menu> menus = FXCollections.observableArrayList();
-        menus.add(new Menu(1, "Repas très bon", 2));
-        menus.add(new Menu(1, "Repas pas bon", 2));
-        //menus = this.mainApp.menuRepo.getAllMenus();
-        menusTable.setItems(menus);
+        resetCommande();
     }
 }

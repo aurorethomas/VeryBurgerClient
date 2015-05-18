@@ -21,6 +21,7 @@ public class Database {
 		url+= login +"/" + password + server;
 		try{
 			this.conn = DriverManager.getConnection(url);
+			System.out.println("Vous etes connectes");
 			return true;
 		}catch(SQLException e){
 			System.out.println("error WHILE CONNECTING");

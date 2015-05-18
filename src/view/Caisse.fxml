@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
-
+ 
 <AnchorPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CaisseController">
    <children>
       <SplitPane dividerPositions="0.7341137123745819" layoutX="6.0" layoutY="7.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -49,7 +49,7 @@
                         <Label GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <Button layoutX="279.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleCommandePaye" prefHeight="26.0" prefWidth="127.0" text="Payé" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                  <Button layoutX="279.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleCommandePaye" prefHeight="26.0" prefWidth="127.0" text="Payer" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
                </children>
             </AnchorPane>
         </items>

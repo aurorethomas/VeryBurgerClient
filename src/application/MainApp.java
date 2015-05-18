@@ -96,14 +96,6 @@ public class MainApp extends Application {
         }
     }
     
-    public Boolean login(String username, String password){
-    	Database db = new Database();
-    	System.out.println(username);
-    	//Boolean succes = db.login(username, password, "@oracle.iut-orsay.fr:1521:etudom");
-    	Boolean succes = true;
-    	return succes;
-    }
-    
     public void showCaisseOverview() {
         try {
             // Load person overview.

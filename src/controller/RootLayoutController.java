@@ -4,6 +4,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import repository.MenuRepository;
 import repository.OrderRepository;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -34,7 +35,8 @@ import entity.Recipe;
 
 
 public class RootLayoutController {
-   
+	
+	private final String SERVER = "@oracle.iut-orsay.fr:1521:etudom";
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -71,8 +73,8 @@ public class RootLayoutController {
     }
     
     public Boolean login(String username, String password){
-    	Boolean succes = this.mainApp.db.login(username, password, "@oracle.iut-orsay.fr:1521:etudom");
-    	
+    	Boolean succes = this.mainApp.db.login(username, password, this.SERVER);
+    	this.mainApp.menuRepo = new MenuRepository(this.mainApp.db);
     	return succes;
     }
     
@@ -149,6 +151,8 @@ public class RootLayoutController {
     	dialog.setResultConverter(dialogButton -> {
     	    if (dialogButton == loginButtonType) {
     	        return new Pair<>(username.getText(), password.getText());
+    	    }else{
+    	    	
     	    }
     	    return null;
     	});

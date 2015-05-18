@@ -20,7 +20,7 @@ public class CommandesController {
     @FXML
     public TableColumn<Order, Number> idOrder;
     @FXML
-    private TableColumn<Order, String> quantity;
+    private TableColumn<Order, String> nameOrder;
     @FXML
     private Label namerecette;
     @FXML
@@ -45,6 +45,7 @@ public class CommandesController {
     private void initialize() {
         // Initialize the person table with the two columns.
     	idOrder.setCellValueFactory(cellData -> cellData.getValue().id_orderProperty() );
+    	nameOrder.setCellValueFactory(cellData -> cellData.getValue().getnameProperty() );
         //lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
     	//nameRecette.setText("Cool");
     	showRecipe(null);
@@ -63,8 +64,13 @@ public class CommandesController {
     private void handleRecipeOk() {
         int selectedIndex = ordersTable.getSelectionModel().getSelectedIndex();
         // TODO
-        //orderRepo.recipeIsDone(ordersTable.getItems().get(selectedIndex));
+        orderRepo.recipeIsDone(ordersTable.getItems().get(selectedIndex).getId_order());
         ordersTable.getItems().remove(selectedIndex);
+    }
+    
+    @FXML
+    private void clickOnMenu(){
+    	namerecette.setText(ordersTable.getSelectionModel().getSelectedItem().getName());
     }
 
     /**
@@ -78,8 +84,9 @@ public class CommandesController {
         // Add observable list data to the table
         // personTable.setItems(mainApp.getPersonData());
         ObservableList<Order> orders = FXCollections.observableArrayList();
-        orders.add(new Order(1, 1 , null, null));
-        orders.add(new Order(2, 2 , null, null));
+        //orders.add(new Order(1, 1 , null, null));
+        orders.add(new Order(1, "Burger"));
+        orders.add(new Order(2, "Paninini"));
         ordersTable.setItems(orders);
     }
 }
