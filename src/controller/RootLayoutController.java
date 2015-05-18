@@ -52,7 +52,7 @@ public class RootLayoutController {
      */
     @FXML
     private void initialize() {
-    	//loginBoxLaunch();
+    	loginBoxLaunch();
     }
     
     @FXML
@@ -71,8 +71,7 @@ public class RootLayoutController {
     }
     
     public Boolean login(String username, String password){
-    	Database db = new Database();
-    	Boolean succes = db.login(username, password, "@oracle.iut-orsay.fr:1521:etudom");
+    	Boolean succes = this.mainApp.db.login(username, password, "@oracle.iut-orsay.fr:1521:etudom");
     	
     	return succes;
     }
@@ -138,7 +137,7 @@ public class RootLayoutController {
     	
     	dialog.setOnCloseRequest(new EventHandler<DialogEvent>() {
             public void handle(DialogEvent we) {
-                System.out.println("Stage is closing");
+                System.out.println("Fenetre de connexion se ferme");
                 
             }
         });   
@@ -161,8 +160,10 @@ public class RootLayoutController {
     	    //System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
     	    
     		if(this.login(usernamePassword.getKey(), usernamePassword.getValue())){
-    			this.changeToCaisse();
+    			System.out.println("Connecté avec succes");
+    			//this.changeToCaisse();
     		}else{
+    			System.out.println("Connexion refusee");
     			this.accessNotGranted();
     		}
     		

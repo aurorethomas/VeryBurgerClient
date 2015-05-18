@@ -62,7 +62,8 @@ public class CommandesController {
     @FXML
     private void handleRecipeOk() {
         int selectedIndex = ordersTable.getSelectionModel().getSelectedIndex();
-        orderRepo.recipeIsDone(ordersTable.getItems().get(selectedIndex));
+        // TODO
+        //orderRepo.recipeIsDone(ordersTable.getItems().get(selectedIndex));
         ordersTable.getItems().remove(selectedIndex);
     }
 
